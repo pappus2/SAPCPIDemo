@@ -1,0 +1,10 @@
+{
+    "transactionId": "ORD12345",
+    "customer": {
+        "fullName": "John Doe",
+        "email": "john.doe@example.com"
+    },
+    "totalAmount": 108.000,
+    "processedAt": "2025-06-11T13:33:15Z",
+    "sourceSystem": "CPI"
+}

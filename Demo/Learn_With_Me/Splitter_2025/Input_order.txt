@@ -1,0 +1,27 @@
+{
+  "orderId": "12345",
+  "customer": {
+    "id": "C001",
+    "name": "John Doe"
+  },
+  "items": [
+    {
+      "itemId": "I001",
+      "description": "Laptop",
+      "quantity": 1,
+      "price": 1500
+    },
+    {
+      "itemId": "I002",
+      "description": "Mouse",
+      "quantity": 2,
+      "price": 25
+    },
+    {
+      "itemId": "I003",
+      "description": "Keyboard",
+      "quantity": 1,
+      "price": 45
+    }
+  ]
+}

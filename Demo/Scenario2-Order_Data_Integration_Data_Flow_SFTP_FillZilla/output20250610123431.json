@@ -1,0 +1,2 @@
+OrderNumber;OrderStatus;CustomerEmail;CustomerName;EmailNotificationFlag;OrderTrackingNumber
+12345;Shipped;customer@example.com;John Doe;true;TN12345678900

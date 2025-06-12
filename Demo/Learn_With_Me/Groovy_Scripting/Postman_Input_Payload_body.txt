@@ -1,0 +1,10 @@
+{
+  "orderId": "ORD12345",
+  "customer": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "John.Doe@EXAMPLE.COM"
+  },
+  "subtotal": 100.0,
+  "taxRate": 0.08
+}

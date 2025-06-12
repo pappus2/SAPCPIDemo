@@ -1,0 +1,49 @@
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+import com.sap.gateway.ip.core.customdev.util.Message
+
+def Message processData(Message message) {
+    try {
+        // Step 1: Parse Input JSON
+        def jsonSlurper = new JsonSlurper()
+        def inputJson = jsonSlurper.parseText(message.getBody(String))
+        
+        // Log original payload (for debugging)
+        log.info("Original JSON: " + JsonOutput.prettyPrint(JsonOutput.toJson(inputJson)))
+        
+        // Step 2: Modify JSON (Example Transformations)
+        def outputJson = [
+            // Rename fields
+            transactionId: inputJson.orderId,
+            // Nested object transformation
+            customer: [
+                fullName: "${inputJson.customer.firstName} ${inputJson.customer.lastName}".trim(),
+                email: inputJson.customer.email?.toLowerCase()  // Optional chaining (?.)
+            ],
+            // Calculate new field
+            totalAmount: inputJson.subtotal * (1 + (inputJson.taxRate ?: 0.1)), // Default tax 10%
+            // Add metadata
+            processedAt: new Date().format("yyyy-MM-dd'T'HH:mm:ssXXX"),
+            sourceSystem: "CPI"
+        ]
+        
+        // Step 3: Convert back to JSON string
+        def modifiedPayload = JsonOutput.toJson(outputJson)
+        message.setBody(modifiedPayload)
+        
+        // Log modified payload
+        log.info("Modified JSON: " + JsonOutput.prettyPrint(modifiedPayload))
+        
+        // Step 4: Add headers (optional)
+        message.setHeader("Content-Type", "application/json")
+        message.setHeader("PayloadModified", "true")
+        
+    } catch (Exception e) {
+        // Error handling
+        log.error("JSON Transformation Failed: " + e.message, e)
+        message.setHeader("isError", "true")
+        message.setBody("""{"error":"${e.message}"}""")
+    }
+    
+    return message
+}

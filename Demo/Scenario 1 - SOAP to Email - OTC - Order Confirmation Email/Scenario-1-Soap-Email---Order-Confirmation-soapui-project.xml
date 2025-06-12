@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cxf="http://cxf.component.camel.apache.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <OrderDetails>
+		<OrderNumber>9000123</OrderNumber>
+		<OrderStatus>Shipped</OrderStatus>
+		<CustomerEmail>2puppala@gmail.com</CustomerEmail>
+		<CustomerName>Nee abbaa rey</CustomerName>
+		<EmailNotificationFlag>true</EmailNotificationFlag>
+		<OrderTrackingNumber>KA123456789009</OrderTrackingNumber>
+		</OrderDetails>
+   </soapenv:Body>
+</soapenv:Envelope>
